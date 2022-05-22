@@ -40,7 +40,11 @@ pipeline {
                     NEW_REVISION=$(echo $NEW_TASK_INFO | jq '.taskDefinition.revision')
                     aws ecs update-service --cluster ${ECS_CLUSTER} \
                                         --service ${SERVICE_NAME} \
-                                        --task-definition ${TASK_FAMILY}:${NEW_REVISION}'''
+                                        --task-definition ${TASK_FAMILY}:${NEW_REVISION}
+                    echo $NEW_REVISION
+                    echo Done!!!!
+                                 '''
+                    
                 }
             }
         }
