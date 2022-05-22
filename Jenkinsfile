@@ -51,3 +51,4 @@ pipeline {
             sh "docker rmi 374590584164.dkr.ecr.us-east-1.amazonaws.com/vote:\${BUILD_NUMBER}"
             }
         }
+}
