@@ -25,7 +25,7 @@ pipeline {
                 sh "eval \$(aws ecr get-login --no-include-email --region us-east-1) && sleep 2"
                 sh "cd vote && docker build . -t 374590584164.dkr.ecr.us-east-1.amazonaws.com/vote:\${BUILD_NUMBER}"
                 sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com"
-                sh "docker push 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:\${BUILD_NUMBER}"
+                sh "docker push 374590584164.dkr.ecr.us-east-1.amazonaws.com/vote:\${BUILD_NUMBER}"
             }
         }
         stage('Deploy in ECS') {
