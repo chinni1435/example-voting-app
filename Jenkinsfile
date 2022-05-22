@@ -12,7 +12,7 @@ pipeline {
             AWS_DEFAULT_REGION = 'us-east-1'
             SERVICE_NAME = 'vote'
             TASK_FAMILY = 'votefargate'
-            ECS_CLUSTER = 'Ec2Jenkins'
+            ECS_CLUSTER = 'voteapp'
     }
     stages {
       stage('Git Checkout') {
