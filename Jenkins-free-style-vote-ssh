@@ -1,0 +1,15 @@
+cd /home/ubuntu/example-voting-app/vote
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com
+docker build -t vote .
+docker tag vote:latest 374590584164.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+docker push 374590584164.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+
+ssh -i $SSH_KEY_FILE -o StrictHostKeyChecking=no ubuntu@3.86.204.241 '
+cd /home/ubuntu/example-voting-app
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 374590584164.dkr.ecr.us-east-1.amazonaws.com
+docker ps
+docker pull 374590584164.dkr.ecr.us-east-1.amazonaws.com/vote:latest
+docker-compose down
+sleep 5
+docker-compose -f docker-compose-simple.yml up -d
+ '
